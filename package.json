@@ -7,14 +7,25 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "codegen": "graphql-codegen --watch",
+    "codegen:once": "graphql-codegen"
   },
   "dependencies": {
+    "@apollo/client": "^3.14.0",
+    "graphql": "^16.11.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@graphql-codegen/cli": "^6.0.0",
+    "@graphql-codegen/client-preset": "5.1.0",
+    "@graphql-codegen/introspection": "5.0.0",
+    "@graphql-codegen/typescript": "^5.0.2",
+    "@graphql-codegen/typescript-operations": "^5.0.2",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.3",
+    "@parcel/watcher": "^2.5.1",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
