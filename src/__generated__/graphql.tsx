@@ -36,7 +36,13 @@ export type MutationCreateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  checkEmailExist: Scalars['Boolean']['output'];
   user?: Maybe<User>;
+};
+
+
+export type QueryCheckEmailExistArgs = {
+  email: Scalars['String']['input'];
 };
 
 
@@ -66,6 +72,13 @@ export type CreateUserMutationVariables = Exact<{
 
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', id: string, name: string, email: string } };
+
+export type CheckEmailExistQueryVariables = Exact<{
+  email: Scalars['String']['input'];
+}>;
+
+
+export type CheckEmailExistQuery = { __typename?: 'Query', checkEmailExist: boolean };
 
 
 export const GetUserDocument = gql`
@@ -145,3 +158,41 @@ export function useCreateUserMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateUserMutationHookResult = ReturnType<typeof useCreateUserMutation>;
 export type CreateUserMutationResult = Apollo.MutationResult<CreateUserMutation>;
 export type CreateUserMutationOptions = Apollo.BaseMutationOptions<CreateUserMutation, CreateUserMutationVariables>;
+export const CheckEmailExistDocument = gql`
+    query CheckEmailExist($email: String!) {
+  checkEmailExist(email: $email)
+}
+    `;
+
+/**
+ * __useCheckEmailExistQuery__
+ *
+ * To run a query within a React component, call `useCheckEmailExistQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCheckEmailExistQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCheckEmailExistQuery({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useCheckEmailExistQuery(baseOptions: Apollo.QueryHookOptions<CheckEmailExistQuery, CheckEmailExistQueryVariables> & ({ variables: CheckEmailExistQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CheckEmailExistQuery, CheckEmailExistQueryVariables>(CheckEmailExistDocument, options);
+      }
+export function useCheckEmailExistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CheckEmailExistQuery, CheckEmailExistQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CheckEmailExistQuery, CheckEmailExistQueryVariables>(CheckEmailExistDocument, options);
+        }
+export function useCheckEmailExistSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<CheckEmailExistQuery, CheckEmailExistQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CheckEmailExistQuery, CheckEmailExistQueryVariables>(CheckEmailExistDocument, options);
+        }
+export type CheckEmailExistQueryHookResult = ReturnType<typeof useCheckEmailExistQuery>;
+export type CheckEmailExistLazyQueryHookResult = ReturnType<typeof useCheckEmailExistLazyQuery>;
+export type CheckEmailExistSuspenseQueryHookResult = ReturnType<typeof useCheckEmailExistSuspenseQuery>;
+export type CheckEmailExistQueryResult = Apollo.QueryResult<CheckEmailExistQuery, CheckEmailExistQueryVariables>;

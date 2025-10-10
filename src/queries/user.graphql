@@ -13,3 +13,7 @@ mutation CreateUser($input: CreateUserInput!) {
     email
   }
 }
+
+query CheckEmailExist($email: String!) {
+  checkEmailExist(email: $email)
+}

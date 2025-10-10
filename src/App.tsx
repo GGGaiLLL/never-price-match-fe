@@ -2,27 +2,36 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { useCreateUserMutation } from "./__generated__/graphql";
+import {
+  useCheckEmailExistLazyQuery,
+  useCheckEmailExistQuery,
+  useCreateUserMutation,
+} from "./__generated__/graphql";
 function App() {
   const [count, setCount] = useState(0);
-  const [createUserMutation, { loading, error }] = useCreateUserMutation();
+  // const [createUserMutation, { loading, error }] = useCreateUserMutation();
+  const [checkEmailExist] = useCheckEmailExistLazyQuery();
   const createUser = async () => {
-    const result = await createUserMutation({
-      variables: {
-        input: {
-          name: "Alex",
-          email: "alex@test.com",
-          password: "password123",
-        },
-      },
+    // const result = await createUserMutation({
+    //   variables: {
+    //     input: {
+    //       name: "Alex",
+    //       email: "alex@test.com",
+    //       password: "password123",
+    //     },
+    //   },
+    // });
+    // console.log("Server response:", result);
+    // if (loading) {
+    //   console.log("Loading...");
+    // }
+    // if (error) {
+    //   console.error("Error:", error);
+    // }
+    const res = await checkEmailExist({
+      variables: { email: "alex@test.com" },
     });
-    console.log("Server response:", result);
-    if (loading) {
-      console.log("Loading...");
-    }
-    if (error) {
-      console.error("Error:", error);
-    }
+    console.log("Email exists:", res.data?.checkEmailExist);
   };
 
   return (
