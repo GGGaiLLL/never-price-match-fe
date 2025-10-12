@@ -1,8 +1,34 @@
-query GetUser($id: ID!) {
+query Me {
+  me {
+    id
+    name
+    email
+    createdAt
+    updatedAt
+  }
+}
+
+query CheckEmailExist($email: String!) {
+  checkEmailExist(email: $email)
+}
+
+query Users {
+  users {
+    id
+    name
+    email
+    createdAt
+    updatedAt
+  }
+}
+
+query User($id: ID!) {
   user(id: $id) {
     id
     name
     email
+    createdAt
+    updatedAt
   }
 }
 
@@ -11,9 +37,24 @@ mutation CreateUser($input: CreateUserInput!) {
     id
     name
     email
+    createdAt
+    updatedAt
   }
 }
 
-query CheckEmailExist($email: String!) {
-  checkEmailExist(email: $email)
+mutation Login($input: LoginInput!) {
+  login(input: $input) {
+    ok
+    user {
+      id
+      name
+      email
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation Logout {
+  logout
 }
