@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.userInfo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.loginButtons {
+  display: flex;
+  gap: 10px;
+}
