@@ -13,17 +13,17 @@ const Header: React.FC = () => {
   const [signupModalOpen, setSignupModalOpen] = useState(false);
   const { message } = App.useApp();
 
-  const handleLogout = async () => {
+  const handleSignOut = async () => {
     const res = await logout();
     if (res.data?.logout) {
       setUser(null);
       localStorage.removeItem("priceMatchSession");
       message.success({
-        content: "Logout success",
+        content: "Sign out success",
       });
     } else {
       message.error({
-        content: "Logout failed",
+        content: "Sign out failed",
       });
     }
   };
@@ -46,15 +46,15 @@ const Header: React.FC = () => {
         {user ? (
           <div className={styles.userInfo}>
             <span>Welcome, {user.name}</span>
-            {/* logout button */}
+            {/* Sign out button */}
             <Popconfirm
-              title="Logout"
-              description="Are you sure you want to logout?"
-              okText="Logout"
-              onConfirm={handleLogout}
+              title="Sign out"
+              description="Are you sure you want to sign out?"
+              okText="Sign out"
+              onConfirm={handleSignOut}
             >
               <Button variant="dashed" color="default">
-                Logout
+                Sign out
               </Button>
             </Popconfirm>
           </div>
